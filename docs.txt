@@ -1,0 +1,35 @@
+# test1 
+simply run 1 car
+
+# test
+try to run several by count
+
+
+# to run terraform need vpn
+https://account.protonvpn.com/dashboard
+
+# if have no pools for vms
+virsh pool-define /dev/stdin <<EOF
+<pool type='dir'>
+  <name>default</name>
+  <target>
+    <path>/var/lib/libvirt/images</path>
+  </target>
+</pool>
+EOF
+
+virsh pool-start default
+virsh pool-autostart default
+virsh pool-list
+
+# and net
+virsh net-list --all
+virsh net-start default
+virsh net-avtostart default
+
+# lookup 
+virsh list
+virsh net-dhcp-leases default
+
+# if need to clear dhcp, only when off
+sudo rm var/lib/libvirt/dnsmasq/virbr0.*
